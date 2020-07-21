@@ -2,6 +2,10 @@ from datetime import datetime
 
 from django.shortcuts import render
 
+from django.views.generic import ListView
+from django_tables2 import SingleTableView
+from .tables import BookTable
+
 from .models import (
     Topic,
     Language,
@@ -31,6 +35,16 @@ def dashboard(request):
 
 
 def book(request, pk_test):
-    book = Book.objects.get(id=pk_test)
+    book = Book.objects.get(title=pk_test)
     context = {'book': book}
     return render(request, 'dashboard/book_profile.html', context)
+
+
+class BookListView(SingleTableView):
+    model = Book
+    table_class = BookTable
+    template_name = 'dashboard/book_list.html'
+    table_pagination = {
+        "per_page": 4
+    }
+    

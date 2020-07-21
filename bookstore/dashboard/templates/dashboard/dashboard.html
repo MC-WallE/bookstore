@@ -29,7 +29,7 @@
 		<tbody>
 			{% for book in books %}
 			<tr>
-				<td><a class="btn btn-sm btn-info" href="{% url 'book' book.id %}">View</a></td>
+				<td><a class="btn btn-sm btn-info" href="{% url 'book' book.title %}">View</a></td>
 				<td style="text-align: center;">{{ book.title }}</td>
 				<td style="text-align: center;">{{ book.author }}</td>
 				<td style="text-align: center;">{{ book.datetime }}</td>
